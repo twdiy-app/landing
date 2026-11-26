@@ -1,0 +1,212 @@
+@font-face {
+  font-family: "Noto Sans";
+  src: url("assets/NotoSans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("assets/NotoSans-Bold.woff") format("woff");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+  --petrol: #164e55;
+  --citron: #daef91;
+  --jade: #7fc6b9;
+  --mist: #e1f4ed;
+  --ink: #143338;
+  --paper: #f1f7f4;
+  --surface: var(--paper);
+  --text: var(--ink);
+  --secondary: #37585b;
+  --rule: #cdded8;
+  --link: var(--petrol);
+  --button-fill: var(--petrol);
+  --button-text: var(--mist);
+  --button-hover: var(--ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: var(--ink);
+    --text: var(--mist);
+    --secondary: #b5d2ca;
+    --rule: #426367;
+    --link: var(--jade);
+    --button-fill: var(--citron);
+    --button-text: var(--ink);
+    --button-hover: var(--mist);
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--text);
+  font: 1rem/1.6 "Noto Sans", system-ui, sans-serif;
+}
+
+.page {
+  width: min(100% - 3rem, 70rem);
+  min-height: 100vh;
+  min-height: 100svh;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.wordmark {
+  display: block;
+  width: 13rem;
+  height: auto;
+}
+
+.hero {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-block: clamp(3rem, 8vh, 6rem);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(3rem, 6.35vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -.066em;
+  line-height: 1.02;
+}
+
+h1 span {
+  display: block;
+}
+
+.intro p {
+  max-width: 35ch;
+  margin: 1.5rem 0 2rem;
+  color: var(--secondary);
+  font-size: clamp(1.0625rem, 1.65vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem 1.5rem;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: .22em;
+}
+
+a:hover {
+  text-decoration-thickness: .12em;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 4px;
+}
+
+.button, .text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  font-weight: 700;
+}
+
+.button {
+  padding: .625rem 1.15rem;
+  border-radius: .5rem;
+  background: var(--button-fill);
+  color: var(--button-text);
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--button-hover);
+}
+
+.hero-art {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid #34666b;
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(circle at center, #265e64, transparent 69%),
+    var(--petrol);
+}
+
+.hero-art::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, transparent calc(50% - 1px), #e1f4ed24 50%, transparent calc(50% + 1px)),
+    radial-gradient(circle at center, transparent calc(64% - 1px), #e1f4ed1c 64%, transparent calc(64% + 1px)),
+    linear-gradient(90deg, transparent calc(50% - .5px), #e1f4ed1a 50%, transparent calc(50% + .5px)),
+    linear-gradient(transparent calc(50% - .5px), #e1f4ed1a 50%, transparent calc(50% + .5px));
+  content: "";
+}
+
+.hero-art img {
+  display: block;
+  width: 53%;
+  height: auto;
+  filter: drop-shadow(0 12px 20px #143338a6);
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .5rem 1rem;
+  padding-block: 1.15rem;
+  border-top: 1px solid var(--rule);
+  color: var(--secondary);
+}
+
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+
+@media (max-width: 47rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    justify-content: start;
+    gap: 2.5rem;
+    padding-block: 3rem;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 11.2vw, 4.8rem);
+  }
+
+  .hero-art {
+    max-width: 29rem;
+  }
+}
